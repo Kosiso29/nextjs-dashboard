@@ -10,9 +10,12 @@ import { ArrowRightIcon } from '@heroicons/react/20/solid';
 import { Button } from './button';
 import { useFormState, useFormStatus } from 'react-dom';
 import { authenticate } from '@/app/lib/actions';
+import { useState } from 'react';
 
 export default function LoginForm() {
     const [errorMessage, dispatch] = useFormState(authenticate, undefined);
+    const [email, setEmail] = useState("user@nextmail.com");
+    const [password, setPassword] = useState("123456");
   return (
     <form action={dispatch} className="space-y-3">
       <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
@@ -31,6 +34,8 @@ export default function LoginForm() {
               <input
                 className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
                 id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 type="email"
                 name="email"
                 placeholder="Enter your email address"
@@ -50,6 +55,8 @@ export default function LoginForm() {
               <input
                 className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
                 id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 type="password"
                 name="password"
                 placeholder="Enter password"
